@@ -5,8 +5,11 @@ import StyledComponentsRegistry from './registry'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Netflix',
-  description: 'Netflix built with Next.js',
+  title: 'J-unicorn',
+  description: 'Japan Leading Investment',
+  icons: {
+    icon: '/logo.ico',
+  },
 }
 
 export default function RootLayout({ children }) {

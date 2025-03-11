@@ -8,10 +8,6 @@ const BannerContainer = styled.div`
   position: relative;
   height: 100vh;
   width: 100%;
-
-  @media (max-width: 768px) {
-    height: 70vh;
-  }
 `;
 
 const BannerVideo = styled.video`
@@ -49,11 +45,13 @@ const BannerContent = styled.div`
 
   @media (max-width: 768px) {
     padding: 30px;
+    align-items: center;
+    text-align: center;
     background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.8) 0%,
       rgba(0, 0, 0, 0.4) 60%,
-      rgba(0, 0, 0, 0) 100%
+      rgba(0, 0, 0, 0.8) 100%
     );
   }
 `;
@@ -73,6 +71,7 @@ const Title = styled.h1`
   @media (max-width: 768px) {
     font-size: 2rem;
     max-width: 100%;
+    text-align: center;
   }
 `;
 
@@ -91,6 +90,7 @@ const Description = styled.p`
   @media (max-width: 768px) {
     font-size: 1.5rem;
     max-width: 100%;
+    text-align: center;
   }
 `;
 
@@ -101,9 +101,10 @@ const ButtonContainer = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.8rem;
     width: 100%;
-    max-width: 300px;
+    max-width: 250px;
+    align-items: center;
   }
 `;
 
@@ -113,12 +114,13 @@ const BannerButton = styled.a`
   outline: none;
   border: none;
   font-weight: 700;
-  border-radius: 0.2vw;
-  padding: 0.5rem 2rem;
-  background-color: rgba(51, 51, 51, 0.5);
+  border-radius: 4px;
+  padding: 0.8rem 2.5rem;
+  background-color: rgba(51, 51, 51, 0.8);
   text-decoration: none;
   display: inline-block;
   text-align: center;
+  font-size: 1.1rem;
   
   &:hover {
     color: #000;
@@ -128,7 +130,7 @@ const BannerButton = styled.a`
 
   @media (max-width: 768px) {
     width: 100%;
-    padding: 0.8rem;
+    padding: 1rem;
     font-size: 1rem;
   }
 `;
