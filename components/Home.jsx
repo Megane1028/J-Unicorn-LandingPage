@@ -9,6 +9,7 @@ import Loading from './Loading';
 
 const Home = () => {
   const [loading, setLoading] = React.useState(true);
+  {/*123*/}
   const testMovies = [
     {
       id: 1,
