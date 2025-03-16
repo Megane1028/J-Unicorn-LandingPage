@@ -1,10 +1,8 @@
 'use client'
 
 import React from 'react';
-import Navbar from './Navbar';
 import Banner from './Banner';
 import Row from './Row';
-import Footer from './Footer';
 import Loading from './Loading';
 
 const Home = () => {
@@ -32,7 +30,7 @@ const Home = () => {
     // 模拟加载时间
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -43,7 +41,6 @@ const Home = () => {
 
   return (
     <main>
-      <Navbar />
       <Banner 
         title="J-ユニコンへよこそう"
         description="Japan Leading Investment"
@@ -54,7 +51,6 @@ const Home = () => {
       <Row title="动作电影" movies={testMovies} />
       <Row title="喜剧电影" movies={testMovies} />
       */}
-      <Footer />
     </main>
   );
 };

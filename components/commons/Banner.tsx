@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
@@ -135,12 +135,25 @@ const BannerButton = styled.a`
   }
 `;
 
-const Banner = ({ title, description }) => {
+interface BannerProps {
+  title: string;
+  description: string;
+}
+
+const Banner = ({ title, description }: BannerProps) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <BannerContainer>
-      <BannerVideo autoPlay muted loop playsInline>
-        <source src="/banner-video.mp4" type="video/mp4" />
-      </BannerVideo>
+      {isMounted && (
+        <BannerVideo autoPlay muted loop playsInline>
+          <source src="/banner-video.mp4" type="video/mp4" />
+        </BannerVideo>
+      )}
       <BannerContent>
         <Title>{title}</Title>
         <Description>{description}</Description>
