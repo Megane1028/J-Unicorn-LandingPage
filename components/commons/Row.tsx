@@ -4,6 +4,17 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import Image from 'next/image';
 
+interface Movie {
+  id: number;
+  name: string;
+  poster_path: string;
+}
+
+interface RowProps {
+  title: string;
+  movies: Movie[];
+}
+
 const RowContainer = styled.div`
   margin-left: 20px;
   color: white;
@@ -94,8 +105,8 @@ const PosterSkeleton = styled.div`
   }
 `;
 
-const Row = ({ title, movies }) => {
-  const [imageLoaded, setImageLoaded] = React.useState({});
+const Row = ({ title, movies }: RowProps) => {
+  const [imageLoaded, setImageLoaded] = React.useState<Record<number, boolean>>({});
 
   return (
     <RowContainer>
