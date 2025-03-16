@@ -19,53 +19,36 @@ const getPostMetadata = (): PostMetadata[] => {
             try {
                 const filePath = path.join(folder, file);
                 const content = fs.readFileSync(filePath, "utf8");
-                console.log(`Processing file: ${filePath}`);
                 
-                // 检查文件内容是否为空
                 if (!content.trim()) {
-                    console.error(`File is empty: ${filePath}`);
                     return null;
                 }
 
-                // 检查 frontmatter 的开始标记
-                if (!content.trim().startsWith('---')) {
-                    console.error(`Invalid frontmatter format in file: ${filePath}`);
-                    return null;
-                }
+                // 使用更宽松的正则表达式来匹配标题和日期
+                const titleMatch = content.match(/title:\s*(?:["']([^"']+)["']|([^\n]+))/);
+                const dateMatch = content.match(/date:\s*(?:["']([^"']+)["']|([^\n]+))/);
 
-                // 检查 frontmatter 的结束标记
-                const frontmatterEnd = content.indexOf('---', 3);
-                if (frontmatterEnd === -1) {
-                    console.error(`Missing closing frontmatter delimiter in file: ${filePath}`);
-                    return null;
-                }
-
-                // 提取 frontmatter 内容
-                const frontmatterContent = content.substring(3, frontmatterEnd).trim();
-                console.log('Frontmatter content:', frontmatterContent);
-
-                const { data } = matter(content);
-
-                if (!data.title || !data.date) {
-                    console.error(`Missing required metadata in file: ${filePath}`);
-                    console.error('Available metadata:', data);
+                if (!titleMatch || !dateMatch) {
                     return null;
                 }
 
                 const post: PostMetadata = {
                     slug: file.replace(".md", ""),
-                    title: data.title,
-                    date: data.date,
-                    subtitle: data.subtitle || undefined,
+                    title: titleMatch[1] || titleMatch[2],
+                    date: dateMatch[1] || dateMatch[2],
+                    subtitle: "",
                 };
 
                 return post;
             } catch (error) {
-                console.error(`Error processing file ${file}:`, error);
                 return null;
             }
         })
-        .filter((post): post is PostMetadata => post !== null);
+        .filter((post): post is PostMetadata => post !== null)
+        .sort((a, b) => {
+            // 按文件名（slug）降序排序，确保最新的文章在前面
+            return b.slug.localeCompare(a.slug);
+        });
 };
 
 export default getPostMetadata; 
