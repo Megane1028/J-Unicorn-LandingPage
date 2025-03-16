@@ -5,7 +5,11 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const Nav = styled.nav`
+interface NavProps {
+    $show: boolean;
+}
+
+const Nav = styled.nav<NavProps>`
   position: fixed;
   top: 0;
   width: 100%;
