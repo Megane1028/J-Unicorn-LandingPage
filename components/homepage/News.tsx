@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import SectionTitle from '../commons/SectionTitle'
 import PostPreview from '../news/PostPreview'
 import { Button } from '../ui/button'
 import Link from "next/link";
@@ -21,7 +20,7 @@ export default function News() {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/news');
+                const response = await fetch('/api/news');
                 if (!response.ok) {
                     throw new Error('Failed to fetch posts');
                 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import SectionTitle from '../../components/commons/SectionTitle'
 import PostPreview from '../../components/news/PostPreview'
 import { Button } from '../../components/ui/button'
 import Link from "next/link";
