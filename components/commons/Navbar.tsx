@@ -95,12 +95,14 @@ const Navbar = () => {
     <Nav $show={show}>
       <NavContent>
         <Logo>
-          <Image 
-            src="/logo.png" 
-            alt="junicorn" 
-            fill
-            style={{ objectFit: 'contain' }}
-          />
+          <Link href="/">
+            <Image 
+              src="/logo.png" 
+              alt="junicorn" 
+              fill
+              style={{ objectFit: 'contain' }}
+            />
+          </Link>
         </Logo>
         {/*
         <NavLinks>

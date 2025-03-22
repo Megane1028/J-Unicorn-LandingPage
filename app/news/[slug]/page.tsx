@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { Button } from '../../../components/ui/button';
 import Markdown from 'markdown-to-jsx';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
 // 获取所有文章的元数据
 const getPostMetadata = (): { slug: string; title: string }[] => {
@@ -109,6 +110,40 @@ export const generateStaticParams = async (): Promise<Params[]> => {
             };
         });
 };
+
+// 生成动态元数据
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const filePath = path.join('markdown/news', `${params.slug}.md`);
+  
+  try {
+    const content = fs.readFileSync(filePath, 'utf8');
+    const { data } = matter(content);
+    
+    return {
+      title: data.title,
+      description: data.subtitle || `${data.title}についての詳細情報をご覧ください。`,
+      openGraph: {
+        title: `${data.title} | J-unicorn ニュース`,
+        description: data.subtitle || `${data.title}についての詳細情報をご覧ください。`,
+        type: 'article',
+        publishedTime: data.date,
+        images: [
+          {
+            url: '/img/message/background.jpg',
+            width: 1200,
+            height: 630,
+            alt: data.title,
+          },
+        ],
+      },
+    };
+  } catch (error) {
+    return {
+      title: 'ニュース記事 | J-unicorn',
+      description: 'J-unicornからの最新ニュースをご覧ください。',
+    };
+  }
+}
 
 // 动态路由页面组件
 export default async function Page({
