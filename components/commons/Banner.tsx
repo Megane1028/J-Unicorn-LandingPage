@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
+import VideoSchema from '../VideoSchema';
 
 const BannerContainer = styled.div`
   position: relative;
@@ -109,29 +110,21 @@ const ButtonContainer = styled.div`
 `;
 
 const BannerButton = styled.a`
-  cursor: pointer;
-  color: #fff;
-  outline: none;
-  border: none;
-  font-weight: 700;
-  border-radius: 4px;
-  padding: 0.8rem 2.5rem;
-  background-color: rgba(51, 51, 51, 0.8);
+  padding: 12px 24px;
+  background-color: #e5e5e5;
+  color: #000;
   text-decoration: none;
-  display: inline-block;
-  text-align: center;
-  font-size: 1.1rem;
-  
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+
   &:hover {
-    color: #000;
-    background-color: #e6e6e6;
-    transition: all 0.2s;
+    background-color: #d4d4d4;
   }
 
   @media (max-width: 768px) {
     width: 100%;
-    padding: 1rem;
-    font-size: 1rem;
+    text-align: center;
   }
 `;
 
@@ -147,11 +140,22 @@ const Banner = ({ title, description }: BannerProps) => {
     setIsMounted(true);
   }, []);
 
+  const videoUrl = '/banner-video.mp4';
+  const thumbnailUrl = '/banner-thumbnail.jpg'; // 确保这个缩略图存在
+  const uploadDate = '2025-03-15'; // 设置视频上传日期
+
   return (
     <BannerContainer>
+      <VideoSchema
+        videoUrl={videoUrl}
+        thumbnailUrl={thumbnailUrl}
+        title={title}
+        description={description}
+        uploadDate={uploadDate}
+      />
       {isMounted && (
-        <BannerVideo autoPlay muted loop playsInline>
-          <source src="/banner-video.mp4" type="video/mp4" />
+        <BannerVideo autoPlay muted loop playsInline poster={thumbnailUrl}>
+          <source src={videoUrl} type="video/mp4" />
         </BannerVideo>
       )}
       <BannerContent>
