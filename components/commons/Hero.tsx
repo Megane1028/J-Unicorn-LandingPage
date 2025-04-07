@@ -42,7 +42,7 @@ const Home = () => {
   return (
     <main>
       <Banner 
-        title="J-ユニコーンへよこそう"
+        title="J-ユニコーンへようこそ"
         description="Japan Leading Investment"
       />
       {/*
