@@ -1,58 +1,58 @@
-'use client'
+'use client';
 
-import React from 'react';
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import Banner from './Banner';
-import Row from './Row';
-import Loading from './Loading';
 
-const Home = () => {
-  const [loading, setLoading] = React.useState(true);
-  {/*123*/}
-  const testMovies = [
-    {
-      id: 1,
-      name: "测试电影1",
-      poster_path: "/test.jpg"
-    },
-    {
-      id: 2,
-      name: "测试电影2",
-      poster_path: "/test.jpg"
-    },
-    {
-      id: 3,
-      name: "测试电影3",
-      poster_path: "/test.jpg"
-    }
-  ];
+export default function Hero() {
+  const [loading, setLoading] = useState(true);
 
-  React.useEffect(() => {
-    // 模拟加载时间
+  useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 900); // 稍微快一点，更像专业站点
 
     return () => clearTimeout(timer);
   }, []);
 
   if (loading) {
-    return <Loading />;
+    return (
+      <LoadingWrapper>
+        <Logo
+          src="/logo.png"
+          alt="Square Point"
+        />
+      </LoadingWrapper>
+    );
   }
 
-  return (
-    <main>
-      <Banner 
-        title="J-ユニコーンへようこそ"
-        description="Japan Leading Investment"
-      />
-      {/*
-      <Row title="热门推荐" movies={testMovies} />
-      <Row title="最新上线" movies={testMovies} />
-      <Row title="动作电影" movies={testMovies} />
-      <Row title="喜剧电影" movies={testMovies} />
-      */}
-    </main>
-  );
-};
+  return <Banner />;
+}
 
-export default Home; 
+/* ===== styles ===== */
+
+const LoadingWrapper = styled.div`
+  height: 100vh;
+  width: 100%;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Logo = styled.img`
+  width: 220px;        /* 关键：放大 */
+  max-width: 70%;
+  animation: fadeIn 0.6s ease-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+`;
