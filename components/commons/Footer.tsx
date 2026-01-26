@@ -28,7 +28,7 @@ const Footer = () => {
     <FooterContainer>
       <FooterContent>
         <FooterText>
-          © 2025 J-unicorn.org.
+          © 2025 Squarepoint Capitals.
         </FooterText>
       </FooterContent>
     </FooterContainer>

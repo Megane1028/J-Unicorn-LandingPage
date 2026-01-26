@@ -1,125 +1,133 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import styled from 'styled-components';
-import VideoSchema from '../VideoSchema';
 
-const BannerContainer = styled.div`
+interface BannerProps {
+  title?: string;
+  description?: string;
+}
+
+export default function Banner({
+  title = 'Squarepoint Capitalへようこそ',
+  description = 'Japan Leading Investment',
+}: BannerProps) {
+  return (
+    <BannerWrapper>
+      <Video autoPlay muted loop playsInline>
+        <source src="/banner-video.mp4" type="video/mp4" />
+      </Video>
+
+      <BannerContent>
+        <Title>{title}</Title>
+        <Description>{description}</Description>
+
+        <ButtonContainer>
+          <BannerButton href="https://trade.altos-ventures.com/#/pages/user/login/login">
+            ログイン
+          </BannerButton>
+
+          <BannerButton href="https://trade.altos-ventures.com/#/pages/user/register/register">
+            新規登録
+          </BannerButton>
+
+          {/* 新增：前往官网 */}
+          <BannerButtonOutline
+            href="https://www.squarepoint-capital.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            公式サイトへ
+          </BannerButtonOutline>
+        </ButtonContainer>
+      </BannerContent>
+    </BannerWrapper>
+  );
+}
+
+/* ===== styled-components ===== */
+
+const BannerWrapper = styled.section`
   position: relative;
-  height: 100vh;
   width: 100%;
+  height: 100vh;
+  overflow: hidden;
 `;
 
-const BannerVideo = styled.video`
+const Video = styled.video`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-`;
-
-const BannerImage = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
 `;
 
 const BannerContent = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 60px;
+  inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-left: 8%;
   background: linear-gradient(
     to right,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.35) 45%,
     rgba(0, 0, 0, 0) 100%
   );
-  z-index: 1;
 
   @media (max-width: 768px) {
-    padding: 30px;
-    align-items: center;
-    text-align: center;
+    padding: 0 6%;
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.8) 0%,
-      rgba(0, 0, 0, 0.4) 60%,
-      rgba(0, 0, 0, 0.8) 100%
+      rgba(0, 0, 0, 0.65) 0%,
+      rgba(0, 0, 0, 0.35) 50%,
+      rgba(0, 0, 0, 0) 100%
     );
   }
 `;
 
 const Title = styled.h1`
+  color: #fff;
   font-size: 3rem;
-  font-weight: bold;
-  color: white;
+  font-weight: 600;
   margin-bottom: 1rem;
-  max-width: 50%;
-
-  @media (max-width: 1024px) {
-    font-size: 2.5rem;
-    max-width: 70%;
-  }
 
   @media (max-width: 768px) {
-    font-size: 2rem;
-    max-width: 100%;
-    text-align: center;
+    font-size: 2.2rem;
   }
 `;
 
 const Description = styled.p`
-  font-size: 2rem;
-  color: white;
-  max-width: 50%;
-  margin-top: 1rem;
-  font-weight: 500;
-
-  @media (max-width: 1024px) {
-    font-size: 1.8rem;
-    max-width: 70%;
-  }
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
 
   @media (max-width: 768px) {
-    font-size: 1.5rem;
-    max-width: 100%;
-    text-align: center;
+    font-size: 1.1rem;
   }
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  gap: 14px;
+  flex-wrap: wrap;
 
   @media (max-width: 768px) {
     flex-direction: column;
-    gap: 0.8rem;
     width: 100%;
-    max-width: 250px;
-    align-items: center;
   }
 `;
 
 const BannerButton = styled.a`
-  padding: 12px 24px;
-  background-color: #e5e5e5;
+  padding: 12px 22px;
+  background-color: #ffffff;
   color: #000;
   text-decoration: none;
-  border-radius: 4px;
-  font-weight: 500;
-  transition: background-color 0.3s;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.25s;
 
   &:hover {
-    background-color: #d4d4d4;
+    background-color: #f0f0f0;
   }
 
   @media (max-width: 768px) {
@@ -128,46 +136,23 @@ const BannerButton = styled.a`
   }
 `;
 
-interface BannerProps {
-  title: string;
-  description: string;
-}
+const BannerButtonOutline = styled.a`
+  padding: 12px 22px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: all 0.25s;
 
-const Banner = ({ title, description }: BannerProps) => {
-  const [isMounted, setIsMounted] = useState(false);
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+  }
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  const videoUrl = '/banner-video.mp4';
-  const thumbnailUrl = '/banner-thumbnail.jpg'; // 确保这个缩略图存在
-  const uploadDate = '2025-03-15'; // 设置视频上传日期
-
-  return (
-    <BannerContainer>
-      <VideoSchema
-        videoUrl={videoUrl}
-        thumbnailUrl={thumbnailUrl}
-        title={title}
-        description={description}
-        uploadDate={uploadDate}
-      />
-      {isMounted && (
-        <BannerVideo autoPlay muted loop playsInline poster={thumbnailUrl}>
-          <source src={videoUrl} type="video/mp4" />
-        </BannerVideo>
-      )}
-      <BannerContent>
-        <Title>{title}</Title>
-        <Description>{description}</Description>
-        <ButtonContainer>
-          <BannerButton href="https://trade.j-unicorn.org/pages/user/login">ログイン</BannerButton>
-          <BannerButton href="https://trade.j-unicorn.org/pages/user/register">新規登録</BannerButton>
-        </ButtonContainer>
-      </BannerContent>
-    </BannerContainer>
-  );
-};
-
-export default Banner; 
+  @media (max-width: 768px) {
+    width: 100%;
+    text-align: center;
+  }
+`;

@@ -9,16 +9,16 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'ニュース',
-  description: 'J-unicornからの最新ニュースとお知らせをご覧ください。日本の投資市場の最新情報をお届けします。',
+  description: 'Squarepoint Capitalsからの最新ニュースとお知らせをご覧ください。日本の投資市場の最新情報をお届けします。',
   openGraph: {
-    title: 'ニュース | J-unicorn',
-    description: 'J-unicornからの最新ニュースとお知らせをご覧ください。日本の投資市場の最新情報をお届けします。',
+    title: 'ニュース | Squarepoint Capitals',
+    description: 'Squarepoint Capitalsからの最新ニュースとお知らせをご覧ください。日本の投資市場の最新情報をお届けします。',
     images: [
       {
         url: '/img/message/background.jpg',
         width: 1200,
         height: 630,
-        alt: 'J-unicorn ニュース',
+        alt: 'Squarepoint Capitals ニュース',
       },
     ],
   },

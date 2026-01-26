@@ -123,7 +123,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title: data.title,
       description: data.subtitle || `${data.title}についての詳細情報をご覧ください。`,
       openGraph: {
-        title: `${data.title} | J-unicorn ニュース`,
+        title: `${data.title} | Squarepoint Capitals ニュース`,
         description: data.subtitle || `${data.title}についての詳細情報をご覧ください。`,
         type: 'article',
         publishedTime: data.date,
@@ -139,8 +139,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   } catch (error) {
     return {
-      title: 'ニュース記事 | J-unicorn',
-      description: 'J-unicornからの最新ニュースをご覧ください。',
+      title: 'ニュース記事 | Squarepoint Capitals',
+      description: 'Squarepoint Capitalsからの最新ニュースをご覧ください。',
     };
   }
 }

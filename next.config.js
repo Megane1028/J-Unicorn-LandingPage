@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['trade.j-unicorn.org', 'localhost'],
+    domains: ['trade.Squarepoint Capitals.org', 'localhost'],
     unoptimized: true,
     remotePatterns: [
       {
