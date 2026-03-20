@@ -22,11 +22,11 @@ export default function Banner({
         <Description>{description}</Description>
 
         <ButtonContainer>
-          <BannerButton href="https://squarepointcapitals.net/#/pages/user/login/login">
+          <BannerButton href="https://trade.squarepointcapitals.net/#/pages/user/login/login">
             ログイン
           </BannerButton>
 
-          <BannerButton href="https://squarepointcapitals.net/#/pages/user/register/register">
+          <BannerButton href="https://trade.squarepointcapitals.net/#/pages/user/register/register">
             新規登録
           </BannerButton>
 
